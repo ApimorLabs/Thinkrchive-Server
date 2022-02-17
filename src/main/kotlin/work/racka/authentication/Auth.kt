@@ -6,6 +6,11 @@ import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
 
 object Auth {
+    // This is stored in your remote environment and is used prevent
+    // anyone from making an admin account unless they have the key
+    // provided by the owner
+    const val ADMIN_REG_KEY = "ADMIN_REG_KEY"
+
     const val ISSUER = "Thinkrchive"
     const val SUBJECT = "ThinkrchiveAuthentication"
     private const val JWT_SECRET_VARIABLE = "JWT_SECRET"

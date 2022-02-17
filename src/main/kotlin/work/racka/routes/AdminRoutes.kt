@@ -7,6 +7,7 @@ import io.ktor.locations.post
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
+import work.racka.authentication.Auth
 import work.racka.authentication.JwtService
 import work.racka.data.model.Admin
 import work.racka.data.model.Response
@@ -34,16 +35,24 @@ class AdminRoutes(
             }
 
             try {
-                val admin = Admin(
-                    email = registerRequest.email,
-                    username = registerRequest.username,
-                    hashPassword = hashFunction(registerRequest.password)
-                )
-                dbRepo.addAdmin(admin)
-                call.respond(
-                    HttpStatusCode.OK,
-                    Response(true, jwtService.generateToken(admin))
-                )
+                val adminRegKey: String = System.getenv(Auth.ADMIN_REG_KEY)
+                if (registerRequest.regKey == adminRegKey) {
+                    val admin = Admin(
+                        email = registerRequest.email,
+                        username = registerRequest.username,
+                        hashPassword = hashFunction(registerRequest.password)
+                    )
+                    dbRepo.addAdmin(admin)
+                    call.respond(
+                        HttpStatusCode.OK,
+                        Response(true, jwtService.generateToken(admin))
+                    )
+                } else {
+                    call.respond(
+                        HttpStatusCode.BadRequest,
+                        Response(false, Constants.ERROR_INVALID_ADMIN_KEY)
+                    )
+                }
             } catch (e: Exception) {
                 call.respond(
                     HttpStatusCode.Conflict,

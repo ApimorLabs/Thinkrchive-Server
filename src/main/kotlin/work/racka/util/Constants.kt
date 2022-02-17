@@ -7,6 +7,7 @@ object Constants {
     const val ERROR_BAD_EMAIL = "Wrong e-mail id or username!"
     const val ERROR_BAD_PASSWORD = "Password Incorrect!"
     const val ERROR_PARAMETER_MODEL_NOT_PRESENT = "QueryParameter: model is not present"
+    const val ERROR_INVALID_ADMIN_KEY = "Invalid Admin registration key"
 
     // Success
     const val SUCCESS_LAPTOP_ADDED = "Laptop Added Successfully"
