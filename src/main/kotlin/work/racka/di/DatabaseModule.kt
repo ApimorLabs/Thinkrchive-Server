@@ -5,6 +5,7 @@ import com.zaxxer.hikari.HikariDataSource
 import kotlinx.coroutines.Dispatchers
 import org.koin.dsl.module
 import work.racka.data.database.LaptopDatabase
+import work.racka.repository.Repository
 import work.racka.repository.RepositoryImpl
 import java.net.URI
 
@@ -47,5 +48,5 @@ val databaseModule = module {
         )
     }
 
-    single { RepositoryImpl(get()) }
+    single<Repository> { RepositoryImpl(get()) }
 }

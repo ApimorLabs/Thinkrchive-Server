@@ -6,7 +6,12 @@ object Routes {
     const val REGISTER_REQUEST = "$ADMIN/register"
     const val LOGIN_REQUEST = "$ADMIN/login"
     const val ALL_LAPTOPS = "$API_VERSION/all-laptops"
-    const val ADD_LAPTOP ="$ALL_LAPTOPS/add"
+    const val ADD_LAPTOP = "$ALL_LAPTOPS/add"
     const val UPDATE_LAPTOP = "$ALL_LAPTOPS/update"
     const val DELETE_LAPTOP = "$ALL_LAPTOPS/delete"
+
+    class AllRoutes(
+        val adminRoutes: AdminRoutes,
+        val laptopRoutes: LaptopRoutes
+    )
 }

@@ -5,24 +5,27 @@ import io.ktor.locations.*
 import io.ktor.response.*
 import io.ktor.routing.*
 import org.koin.ktor.ext.inject
-import work.racka.routes.AdminRoutes
+import work.racka.routes.Routes
 
 fun Application.configureRouting() {
     install(Locations)
 
-    val adminRoutes by inject<AdminRoutes>()
+    val allRoutes by inject<Routes.AllRoutes>()
 
     routing {
 
-        adminRoutes.run { routes() }
+        allRoutes.run {
+            adminRoutes.run { routes() }
+            laptopRoutes.run { routes() }
+        }
 
         get("/") {
-            call.respondText("Hello There! Welcome to Thinkrchive.")
+            call.respondText("Hello There! Welcome to Thinkrchive API Server.")
         }
 
         /**
         get<MyLocation> {
-            call.respondText("Location: name=${it.name}, arg1=${it.arg1}, arg2=${it.arg2}")
+        call.respondText("Location: name=${it.name}, arg1=${it.arg1}, arg2=${it.arg2}")
         }
         // Register nested routes
         get<Type.Edit> {
