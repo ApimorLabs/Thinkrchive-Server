@@ -9,9 +9,19 @@
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
+build/classes/
+build/kotlin
+build/libs
+build/resources/
+build/scripts/
+build/snapshot/
+build/tmp/
+build/install/work.racka.thinkrchive-server/lib/
+.gradle
 
 # Package Files #
 *.jar
+
 *.war
 *.nar
 *.ear

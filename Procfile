@@ -1,0 +1,1 @@
+web: build/install/work.racka.thinkrchive-server/bin/work.racka.thinkrchive-server
