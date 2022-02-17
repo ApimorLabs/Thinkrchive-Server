@@ -21,7 +21,7 @@ build/install/work.racka.thinkrchive-server/lib/
 
 # Package Files #
 *.jar
-
+!gradle-wrapper.jar
 *.war
 *.nar
 *.ear
