@@ -19,4 +19,8 @@ interface Repository {
     suspend fun updateLaptop(laptop: Laptop)
 
     suspend fun deleteLaptop(model: String)
+
+    suspend fun deleteAllLaptops()
+
+    // TODO: Add a way to detect absent items when deleting
 }

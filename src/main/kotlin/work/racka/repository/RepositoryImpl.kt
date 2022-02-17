@@ -113,4 +113,10 @@ class RepositoryImpl(
             LaptopTable.deleteWhere { LaptopTable.model.eq(model) }
         }
     }
+
+    override suspend fun deleteAllLaptops() {
+        db.query {
+            LaptopTable.deleteAll()
+        }
+    }
 }

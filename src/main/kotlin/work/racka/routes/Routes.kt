@@ -9,6 +9,7 @@ object Routes {
     const val ADD_LAPTOP = "$ALL_LAPTOPS/add"
     const val UPDATE_LAPTOP = "$ALL_LAPTOPS/update"
     const val DELETE_LAPTOP = "$ALL_LAPTOPS/delete"
+    const val DELETE_ALL_LAPTOPS = "$DELETE_LAPTOP/all"
 
     class AllRoutes(
         val adminRoutes: AdminRoutes,

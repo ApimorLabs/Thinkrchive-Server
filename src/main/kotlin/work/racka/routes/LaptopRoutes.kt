@@ -8,6 +8,7 @@ import io.ktor.locations.post
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
+import work.racka.authentication.Auth
 import work.racka.data.model.Laptop
 import work.racka.data.model.Response
 import work.racka.repository.Repository
@@ -100,6 +101,38 @@ class LaptopRoutes(
                     )
                 }
             }
+
+            delete<LaptopDeleteAllRoute> {
+                val regKey = try {
+                    call.parameters["regKey"]!!
+                } catch (e: Exception) {
+                    call.respond(
+                        HttpStatusCode.BadRequest,
+                        Response(false, Constants.ERROR_PARAMETER_REG_KEY_NOT_PRESENT)
+                    )
+                    return@delete
+                }
+                try {
+                    val adminRegKey: String = System.getenv(Auth.ADMIN_REG_KEY)
+                    if (regKey == adminRegKey) {
+                        dbRepo.deleteAllLaptops()
+                        call.respond(
+                            HttpStatusCode.OK,
+                            Response(true, Constants.SUCCESS_ALL_LAPTOPS_DELETED)
+                        )
+                    } else {
+                        call.respond(
+                            HttpStatusCode.BadRequest,
+                            Response(false, Constants.ERROR_INVALID_ADMIN_KEY)
+                        )
+                    }
+                } catch (e: Exception) {
+                    call.respond(
+                        HttpStatusCode.Conflict,
+                        Response(false, e.message ?: Constants.ERROR_GENERIC)
+                    )
+                }
+            }
         }
     }
 
@@ -114,4 +147,7 @@ class LaptopRoutes(
 
     @Location(Routes.DELETE_LAPTOP)
     class LaptopDeleteRoute
+
+    @Location(Routes.DELETE_ALL_LAPTOPS)
+    class LaptopDeleteAllRoute
 }
