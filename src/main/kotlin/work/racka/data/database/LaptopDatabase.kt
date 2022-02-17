@@ -22,7 +22,7 @@ class LaptopDatabase(
         }
     }
 
-    suspend fun <T> dbQuery(block: () -> T): T =
+    suspend fun <T> query(block: () -> T): T =
         withContext(dispatcher) {
             transaction { block() }
         }
