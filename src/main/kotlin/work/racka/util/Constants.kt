@@ -9,10 +9,12 @@ object Constants {
     const val ERROR_PARAMETER_MODEL_NOT_PRESENT = "QueryParameter: model is not present"
     const val ERROR_PARAMETER_REG_KEY_NOT_PRESENT = "QueryParameter: regKey is not present"
     const val ERROR_INVALID_ADMIN_KEY = "Invalid Admin Key!"
+    const val ERROR_LAPTOP_NOT_FOUND = "Laptop Model Not Found"
 
     // Success
     const val SUCCESS_LAPTOP_ADDED = "Laptop Added Successfully"
     const val SUCCESS_LAPTOP_UPDATED = "Laptop Updated Successfully"
     const val SUCCESS_LAPTOP_DELETED = "Laptop Deleted Successfully"
+    const val SUCCESS_ADMIN_DELETED = "Admin Deleted Successfully"
     const val SUCCESS_ALL_LAPTOPS_DELETED = "All Laptops Deleted Successfully"
 }

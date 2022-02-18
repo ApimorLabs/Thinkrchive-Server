@@ -89,12 +89,21 @@ class LaptopRoutes(
                 }
 
                 try {
-                    dbRepo.deleteLaptop(laptopModel)
-                    call.respond(
-                        HttpStatusCode.OK,
-                        Response(true, Constants.SUCCESS_LAPTOP_DELETED)
-                    )
+                    val laptop = dbRepo.getLaptop(laptopModel)
+                    if (laptop != null) {
+                        dbRepo.deleteLaptop(laptopModel)
+                        call.respond(
+                            HttpStatusCode.OK,
+                            Response(true, Constants.SUCCESS_LAPTOP_DELETED)
+                        )
+                    } else {
+                        call.respond(
+                            HttpStatusCode.BadRequest,
+                            Response(false, Constants.ERROR_LAPTOP_NOT_FOUND)
+                        )
+                    }
                 } catch (e: Exception) {
+                    e.printStackTrace()
                     call.respond(
                         HttpStatusCode.Conflict,
                         Response(false, e.message ?: Constants.ERROR_GENERIC)

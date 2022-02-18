@@ -20,6 +20,14 @@ class RepositoryImpl(
         }
     }
 
+    override suspend fun deleteAdmin(email: String) {
+        db.query {
+            AdminTable.deleteWhere {
+                AdminTable.email.eq(email)
+            }
+        }
+    }
+
     override suspend fun findAdmin(identifier: String): Admin? =
         db.query {
             AdminTable.select {
@@ -119,4 +127,13 @@ class RepositoryImpl(
             LaptopTable.deleteAll()
         }
     }
+
+    override suspend fun getLaptop(model: String): Laptop? =
+        db.query {
+            LaptopTable.select {
+                LaptopTable.model.eq(model)
+            }
+                .map { Converters.rowToLaptop(it) }
+                .singleOrNull()
+        }
 }

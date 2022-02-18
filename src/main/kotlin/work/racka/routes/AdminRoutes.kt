@@ -1,6 +1,7 @@
 package work.racka.routes
 
 import io.ktor.application.*
+import io.ktor.auth.*
 import io.ktor.http.*
 import io.ktor.locations.*
 import io.ktor.locations.post
@@ -61,6 +62,7 @@ class AdminRoutes(
             }
         }
 
+        // Login admin
         post<AdminLoginRoute> {
             val loginRequest = try {
                 call.receive<LoginRequest>()
@@ -99,6 +101,50 @@ class AdminRoutes(
                 )
             }
         }
+
+        // Delete Admin
+        authenticate("jwt") {
+            delete<AdminDeleteRoute> {
+                val deleteRequest = try {
+                    call.receive<LoginRequest>()
+                } catch (e: Exception) {
+                    call.respond(
+                        HttpStatusCode.BadRequest,
+                        Response(false, Constants.ERROR_MISSING_FIELDS)
+                    )
+                    return@delete
+                }
+
+                try {
+                    val admin = dbRepo.findAdmin(deleteRequest.identifier)
+                    if (admin == null) {
+                        call.respond(
+                            HttpStatusCode.BadRequest,
+                            Response(false, Constants.ERROR_BAD_EMAIL)
+                        )
+                    } else {
+                        if (admin.hashPassword == hashFunction(deleteRequest.password)) {
+                            dbRepo.deleteAdmin(admin.email)
+                            call.respond(
+                                HttpStatusCode.OK,
+                                Response(true, Constants.SUCCESS_ADMIN_DELETED)
+                            )
+                        } else {
+                            call.respond(
+                                HttpStatusCode.BadRequest,
+                                Response(false, Constants.ERROR_BAD_PASSWORD)
+                            )
+                        }
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    call.respond(
+                        HttpStatusCode.Conflict,
+                        Response(false, e.message ?: Constants.ERROR_GENERIC)
+                    )
+                }
+            }
+        }
     }
 
     @Location(Routes.LOGIN_REQUEST)
@@ -106,4 +152,7 @@ class AdminRoutes(
 
     @Location(Routes.REGISTER_REQUEST)
     class AdminRegisterRoute
+
+    @Location(Routes.DELETE_ADMIN)
+    class AdminDeleteRoute
 }

@@ -5,6 +5,7 @@ object Routes {
     const val ADMIN = "$API_VERSION/admins"
     const val REGISTER_REQUEST = "$ADMIN/register"
     const val LOGIN_REQUEST = "$ADMIN/login"
+    const val DELETE_ADMIN = "$ADMIN/delete"
     const val ALL_LAPTOPS = "$API_VERSION/all-laptops"
     const val ADD_LAPTOP = "$ALL_LAPTOPS/add"
     const val UPDATE_LAPTOP = "$ALL_LAPTOPS/update"
