@@ -19,20 +19,20 @@
 
 ## 🏗️️ Built with
 
-| Component       | Tool                          |
-|----------------	|------------------------------	|
-| 🎭  User Facing Clients   | [Thinkrchive](https://github.com/racka98/ThinkRchive)               |
-| 🧠  Hosted         | [Heroku](https://www.heroku.com)                            |
-| 💉  DI                | [Koin](https://insert-koin.io/docs/reference/koin-ktor/ktor/)                        |
-| 🛣️  Navigation        | [Ktor Routing](https://ktor.io/docs/routing-in-ktor.html) + [Ktor Locations](https://ktor.io/docs/locations.html)          |
-| 🌊  Async            | [Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)                |
-| 🌐  Networking Engine    | [Ktor Netty Engine](https://ktor.io/docs/engines.html)                        |
-| 🔒  Authentication  | [Ktor JWT](https://ktor.io/docs/jwt.html)  |
-| 📄  JSON            | [Kotlin Serialization](https://github.com/Kotlin/kotlinx.serialization)                            |
-| 💾  Persistance     | [Postgresql](https://www.postgresql.org/)   |
-| ⌨️  Logging            | [Ktor Call Logging](https://ktor.io/docs/call-logging.html)                            |
-| 🔧  Supplimentary   | [Jetbrains Exposed](https://github.com/JetBrains/Exposed) + [HikariCP](https://github.com/brettwooldridge/HikariCP)  |
-| 🧪  Testing            | [Ktor Server Test](https://ktor.io/docs/testing.html) )   |
+| Component       | Tool                                                                                                                       |
+|----------------	|----------------------------------------------------------------------------------------------------------------------------|
+| 🎭 User Facing Clients   | [Thinkrchive](https://github.com/racka98/ThinkRchive)                                                                      |
+| 🧠 Hosted         | [Heroku](https://www.heroku.com)                                                                                           |
+| 💉 DI                | [Koin](https://insert-koin.io/docs/reference/koin-ktor/ktor/)                                                              |
+| 🛣️ Navigation        | [Ktor Routing](https://ktor.io/docs/routing-in-ktor.html) + [Ktor Locations](https://ktor.io/docs/locations.html)          |
+| 🌊 Async            | [Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)                                                         |
+| 🌐 Networking Engine    | [Ktor Netty Engine](https://ktor.io/docs/engines.html)                                                                     |
+| 🔒 Authentication  | [Ktor JWT](https://ktor.io/docs/jwt.html)                                                                                  |
+| 📄 JSON            | [Kotlin Serialization](https://github.com/Kotlin/kotlinx.serialization)                                                    |
+| 💾 Persistance     | [Postgresql](https://www.postgresql.org/)                                                                                  |
+| ⌨️ Logging            | [Ktor Call Logging](https://ktor.io/docs/call-logging.html)                                                                |
+| 🔧 Supplimentary   | [Jetbrains Exposed](https://github.com/JetBrains/Exposed) + [HikariCP](https://github.com/brettwooldridge/HikariCP)        |
+| 🧪 Testing            | [Ktor Server Test](https://ktor.io/docs/testing.html) )                                                                    |
 
 ## 🧐 Fun Facts
   
@@ -42,6 +42,7 @@
 
 ## 💻 Deploying on Heroku
 
+- [Coming Soon]()
 
 ## ✅ TODO
 
