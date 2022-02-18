@@ -28,10 +28,10 @@ class RepositoryImpl(
         }
     }
 
-    override suspend fun findAdmin(identifier: String): Admin? =
+    override suspend fun findAdmin(email: String): Admin? =
         db.query {
             AdminTable.select {
-                AdminTable.email.eq(identifier) or AdminTable.username.eq(identifier)
+                AdminTable.email.eq(email)
             }
                 .map { Converters.rowToAdmin(it) }
                 .singleOrNull()

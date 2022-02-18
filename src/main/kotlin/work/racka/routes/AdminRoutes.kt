@@ -75,7 +75,7 @@ class AdminRoutes(
             }
 
             try {
-                val admin = dbRepo.findAdmin(loginRequest.identifier)
+                val admin = dbRepo.findAdmin(loginRequest.email)
                 if (admin == null) {
                     call.respond(
                         HttpStatusCode.BadRequest,
@@ -116,7 +116,7 @@ class AdminRoutes(
                 }
 
                 try {
-                    val admin = dbRepo.findAdmin(deleteRequest.identifier)
+                    val admin = dbRepo.findAdmin(deleteRequest.email)
                     if (admin == null) {
                         call.respond(
                             HttpStatusCode.BadRequest,
