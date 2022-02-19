@@ -44,7 +44,7 @@ fun Application.configureSecurity() {
                     username = username!!,
                     hashPassword = hashFunction(password!!)
                 )
-                call.respond(jwtService.generateToken(admin))
+                call.respond("You token is ${jwtService.generateToken(admin)}")
             } catch (e: Exception) {
                 e.printStackTrace()
                 call.respond(
