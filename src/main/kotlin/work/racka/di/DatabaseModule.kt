@@ -4,9 +4,13 @@ import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import kotlinx.coroutines.Dispatchers
 import org.koin.dsl.module
+import org.litote.kmongo.coroutine.CoroutineDatabase
+import org.litote.kmongo.coroutine.coroutine
+import org.litote.kmongo.reactivestreams.KMongo
 import work.racka.data.database.LaptopDatabase
+import work.racka.data.database.MongoDB
+import work.racka.repository.MongoRepositoryImpl
 import work.racka.repository.Repository
-import work.racka.repository.RepositoryImpl
 import java.net.URI
 
 val databaseModule = module {
@@ -41,6 +45,7 @@ val databaseModule = module {
         HikariDataSource(config)
     }
 
+    // Postgres DB
     single {
         LaptopDatabase(
             hikariDataSource = get(),
@@ -48,5 +53,20 @@ val databaseModule = module {
         )
     }
 
-    single<Repository> { RepositoryImpl(get()) }
+    // MongoDb
+    factory<CoroutineDatabase> {
+        val configString = System.getenv("MONGODB_URI")
+        KMongo.createClient(configString)
+            .coroutine
+            .getDatabase("thinkpad_db")
+    }
+
+    factory<MongoDB> {
+        MongoDB(
+            coroutineDatabase = get(),
+            dispatcher = Dispatchers.IO
+        )
+    }
+
+    factory<Repository> { MongoRepositoryImpl(get()) }
 }

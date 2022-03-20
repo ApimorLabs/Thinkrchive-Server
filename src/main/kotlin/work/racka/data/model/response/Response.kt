@@ -1,4 +1,4 @@
-package work.racka.data.model
+package work.racka.data.model.response
 
 import kotlinx.serialization.Serializable
 

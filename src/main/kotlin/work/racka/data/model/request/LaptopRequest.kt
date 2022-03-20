@@ -1,12 +1,10 @@
-package work.racka.data.model
+package work.racka.data.model.request
 
 import kotlinx.serialization.Serializable
 
-// _id is the laptop model
 @Serializable
-data class Laptop(
-    val _id: String,
-    val model: String = _id,
+data class LaptopRequest(
+    val model: String,
     val imageUrl: String,
     val releaseDate: String,
     val series: String,

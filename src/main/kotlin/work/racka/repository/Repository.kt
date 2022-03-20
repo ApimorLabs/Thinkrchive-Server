@@ -1,7 +1,8 @@
 package work.racka.repository
 
 import work.racka.data.model.Admin
-import work.racka.data.model.Laptop
+import work.racka.data.model.request.LaptopRequest
+import work.racka.data.model.response.LaptopResponse
 
 interface Repository {
 
@@ -11,19 +12,19 @@ interface Repository {
     suspend fun addAdmin(admin: Admin)
 
     // Search admin for login
-    suspend fun findAdmin(identifier: String): Admin?
+    suspend fun findAdmin(email: String): Admin?
 
     // Delete admin
     suspend fun deleteAdmin(email: String)
 
     //Laptop query CRUD operations
-    suspend fun getAllLaptops(): List<Laptop>
+    suspend fun getAllLaptops(): List<LaptopResponse>
 
-    suspend fun getLaptop(model: String): Laptop?
+    suspend fun getLaptop(model: String): LaptopResponse?
 
-    suspend fun addLaptop(laptop: Laptop)
+    suspend fun addLaptop(laptop: LaptopRequest)
 
-    suspend fun updateLaptop(laptop: Laptop)
+    suspend fun updateLaptop(laptop: LaptopRequest)
 
     suspend fun deleteLaptop(model: String)
 

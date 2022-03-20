@@ -7,7 +7,7 @@ import work.racka.routes.LaptopRoutes
 import work.racka.routes.Routes
 
 val routesModule = module {
-    single {
+    factory {
         AdminRoutes(
             dbRepo = get(),
             jwtService = get(),
@@ -15,9 +15,9 @@ val routesModule = module {
         )
     }
 
-    single { LaptopRoutes(dbRepo = get()) }
+    factory { LaptopRoutes(dbRepo = get()) }
 
-    single {
+    factory {
         Routes.AllRoutes(
             adminRoutes = get(),
             laptopRoutes = get()

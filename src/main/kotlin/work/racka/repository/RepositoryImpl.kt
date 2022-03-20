@@ -3,7 +3,8 @@ package work.racka.repository
 import org.jetbrains.exposed.sql.*
 import work.racka.data.database.LaptopDatabase
 import work.racka.data.model.Admin
-import work.racka.data.model.Laptop
+import work.racka.data.model.request.LaptopRequest
+import work.racka.data.model.response.LaptopResponse
 import work.racka.data.table.AdminTable
 import work.racka.data.table.LaptopTable
 
@@ -38,11 +39,13 @@ class RepositoryImpl(
         }
 
     //Laptop query CRUD operations
-    override suspend fun getAllLaptops(): List<Laptop> = db.query {
-        LaptopTable.selectAll().mapNotNull { Converters.rowToLaptop(it) }
+    override suspend fun getAllLaptops(): List<LaptopResponse> = db.query {
+        LaptopTable.selectAll().mapNotNull {
+            Converters.rowToLaptopResponse(it)
+        }
     }
 
-    override suspend fun addLaptop(laptop: Laptop) {
+    override suspend fun addLaptop(laptop: LaptopRequest) {
         db.query {
             LaptopTable.insert { laptopTable ->
                 laptopTable[model] = laptop.model
@@ -77,7 +80,7 @@ class RepositoryImpl(
         }
     }
 
-    override suspend fun updateLaptop(laptop: Laptop) {
+    override suspend fun updateLaptop(laptop: LaptopRequest) {
         db.query {
             LaptopTable.update(
                 where = {
@@ -128,12 +131,12 @@ class RepositoryImpl(
         }
     }
 
-    override suspend fun getLaptop(model: String): Laptop? =
+    override suspend fun getLaptop(model: String): LaptopResponse? =
         db.query {
             LaptopTable.select {
                 LaptopTable.model.eq(model)
             }
-                .map { Converters.rowToLaptop(it) }
+                .mapNotNull { Converters.rowToLaptopResponse(it) }
                 .singleOrNull()
         }
 }

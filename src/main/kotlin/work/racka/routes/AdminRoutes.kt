@@ -11,9 +11,9 @@ import io.ktor.routing.*
 import work.racka.authentication.Auth
 import work.racka.authentication.JwtService
 import work.racka.data.model.Admin
-import work.racka.data.model.Response
 import work.racka.data.model.request.LoginRequest
 import work.racka.data.model.request.RegisterRequest
+import work.racka.data.model.response.Response
 import work.racka.repository.Repository
 import work.racka.util.Constants
 

@@ -5,6 +5,7 @@ val exposed_version: String by project
 val hikari_version: String by project
 val postgres_version: String by project
 val koin_version: String by project
+val kmongo_version: String by project
 
 plugins {
     application
@@ -45,6 +46,11 @@ dependencies {
     implementation("org.postgresql:postgresql:$postgres_version")
     // Hikari
     implementation("com.zaxxer:HikariCP:$hikari_version")
+
+    // KMongo
+    implementation("org.litote.kmongo:kmongo:$kmongo_version")
+    implementation("org.litote.kmongo:kmongo-coroutine:$kmongo_version")
+
     // Koin core features
     implementation("io.insert-koin:koin-core:$koin_version")
     implementation("io.insert-koin:koin-ktor:$koin_version")

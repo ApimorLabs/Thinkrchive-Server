@@ -10,7 +10,8 @@ import io.ktor.response.*
 import io.ktor.routing.*
 import work.racka.authentication.Auth
 import work.racka.data.model.Laptop
-import work.racka.data.model.Response
+import work.racka.data.model.request.LaptopRequest
+import work.racka.data.model.response.Response
 import work.racka.repository.Repository
 import work.racka.util.Constants
 
@@ -35,7 +36,7 @@ class LaptopRoutes(
         authenticate("jwt") {
             post<LaptopAddRoute> {
                 val laptop = try {
-                    call.receive<Laptop>()
+                    call.receive<LaptopRequest>()
                 } catch (e: Exception) {
                     call.respond(
                         HttpStatusCode.BadRequest,
@@ -57,7 +58,7 @@ class LaptopRoutes(
 
             post<LaptopUpdateRoute> {
                 val laptop = try {
-                    call.receive<Laptop>()
+                    call.receive<LaptopRequest>()
                 } catch (e: Exception) {
                     call.respond(
                         HttpStatusCode.BadRequest,
