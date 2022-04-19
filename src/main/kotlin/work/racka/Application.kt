@@ -1,8 +1,7 @@
 package work.racka
 
-import io.ktor.application.*
-import org.koin.ktor.ext.Koin
-import org.koin.ktor.ext.modules
+import io.ktor.server.application.*
+import work.racka.di.Koin
 import work.racka.di.authenticationModule
 import work.racka.di.databaseModule
 import work.racka.di.routesModule
@@ -14,7 +13,9 @@ fun main(args: Array<String>): Unit =
 @Suppress("unused") // application.conf references the main function. This annotation prevents the IDE from marking it as unused.
 fun Application.module() {
     install(Koin) {
-        modules(databaseModule, authenticationModule, routesModule)
+        modules = arrayListOf(
+            databaseModule, authenticationModule, routesModule
+        )
     }
     connectDatabase()
     configureSecurity()

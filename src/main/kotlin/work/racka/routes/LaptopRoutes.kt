@@ -1,13 +1,13 @@
 package work.racka.routes
 
-import io.ktor.application.*
-import io.ktor.auth.*
 import io.ktor.http.*
-import io.ktor.locations.*
-import io.ktor.locations.post
-import io.ktor.request.*
-import io.ktor.response.*
-import io.ktor.routing.*
+import io.ktor.server.application.*
+import io.ktor.server.auth.*
+import io.ktor.server.locations.*
+import io.ktor.server.locations.post
+import io.ktor.server.request.*
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
 import work.racka.authentication.Auth
 import work.racka.data.model.Laptop
 import work.racka.data.model.request.LaptopRequest
@@ -15,6 +15,7 @@ import work.racka.data.model.response.Response
 import work.racka.repository.Repository
 import work.racka.util.Constants
 
+@OptIn(KtorExperimentalLocationsAPI::class)
 class LaptopRoutes(
     private val dbRepo: Repository
 ) {

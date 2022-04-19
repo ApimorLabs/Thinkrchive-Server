@@ -32,6 +32,6 @@ object LaptopTable: Table() {
     val biosLockIn = text("biosLockIn")
     val ports = text("ports")
 
-    override val primaryKey: PrimaryKey?
+    override val primaryKey: PrimaryKey
         get() = PrimaryKey(model)
 }

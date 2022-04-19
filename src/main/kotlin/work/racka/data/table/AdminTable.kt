@@ -7,6 +7,6 @@ object AdminTable: Table() {
     val username = varchar("username", 256)
     val hashPassword = varchar("hashPassword", 256)
 
-    override val primaryKey: PrimaryKey?
+    override val primaryKey: PrimaryKey
         get() = PrimaryKey(email)
 }

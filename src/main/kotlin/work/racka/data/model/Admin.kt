@@ -1,6 +1,6 @@
 package work.racka.data.model
 
-import io.ktor.auth.*
+import io.ktor.server.auth.*
 import kotlinx.serialization.Serializable
 
 @Serializable

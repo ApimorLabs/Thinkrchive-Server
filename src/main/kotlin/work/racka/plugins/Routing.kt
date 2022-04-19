@@ -1,12 +1,13 @@
 package work.racka.plugins
 
-import io.ktor.application.*
-import io.ktor.locations.*
-import io.ktor.response.*
-import io.ktor.routing.*
-import org.koin.ktor.ext.inject
+import io.ktor.server.application.*
+import io.ktor.server.locations.*
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
+import work.racka.di.inject
 import work.racka.routes.Routes
 
+@OptIn(KtorExperimentalLocationsAPI::class)
 fun Application.configureRouting() {
     install(Locations)
 
@@ -29,12 +30,12 @@ fun Application.configureRouting() {
         }
         // Register nested routes
         get<Type.Edit> {
-            call.respondText("Inside $it")
+        call.respondText("Inside $it")
         }
         get<Type.List> {
-            call.respondText("Inside $it")
+        call.respondText("Inside $it")
         }
-        **/
+         **/
     }
 }
 
@@ -43,10 +44,10 @@ fun Application.configureRouting() {
 class MyLocation(val name: String, val arg1: Int = 42, val arg2: String = "default")
 @Location("/type/{name}")
 data class Type(val name: String) {
-    @Location("/edit")
-    data class Edit(val type: Type)
+@Location("/edit")
+data class Edit(val type: Type)
 
-    @Location("/list/{page}")
-    data class List(val type: Type, val page: Int)
+@Location("/list/{page}")
+data class List(val type: Type, val page: Int)
 }
-**/
+ **/
