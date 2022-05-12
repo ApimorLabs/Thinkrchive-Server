@@ -9,13 +9,15 @@ object Auth {
     // This is stored in your remote environment and is used prevent
     // anyone from making an admin account unless they have the key
     // provided by the owner
+    // Temp solution
     const val ADMIN_REG_KEY = "ADMIN_REG_KEY"
 
     const val ISSUER = "Thinkrchive"
     const val SUBJECT = "ThinkrchiveAuthentication"
-    private const val JWT_SECRET_VARIABLE = "JWT_SECRET"
-    private const val HASH_KEY_VARIABLE = "HASH_SECRET_KEY"
-    private const val HMAC_ALGORITHM = "HmacSHA1"
+    const val JWT_SECRET_VARIABLE = "JWT_SECRET"
+    const val HASH_KEY_VARIABLE = "HASH_SECRET_KEY"
+    const val SECURE_RANDOM_ALGORITHM = "SHA1PRNG"
+    const val HMAC_ALGORITHM = "HmacSHA256"
 
     private val jwtSecret: String = System.getenv(JWT_SECRET_VARIABLE)
     val algorithm: Algorithm = Algorithm.HMAC256(jwtSecret)

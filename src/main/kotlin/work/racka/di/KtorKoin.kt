@@ -1,6 +1,6 @@
-/*
 package work.racka.di
 
+/*
 import io.ktor.events.EventDefinition
 import io.ktor.server.application.*
 import io.ktor.server.routing.*

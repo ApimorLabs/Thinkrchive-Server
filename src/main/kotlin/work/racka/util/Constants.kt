@@ -20,4 +20,7 @@ object Constants {
     const val SUCCESS_LAPTOP_DELETED = "Laptop Deleted Successfully"
     const val SUCCESS_ADMIN_DELETED = "Admin Deleted Successfully"
     const val SUCCESS_ALL_LAPTOPS_DELETED = "All Laptops Deleted Successfully"
+
+    // Other
+    const val EXPIRES_IN_YEAR = 365L * 1000L * 60L * 60L * 24L
 }

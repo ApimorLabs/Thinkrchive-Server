@@ -13,7 +13,8 @@ object Converters {
         return Admin(
             email = row[AdminTable.email],
             username = row[AdminTable.username],
-            hashPassword = row[AdminTable.hashPassword]
+            hashPassword = row[AdminTable.hashPassword],
+            salt = ""
         )
     }
 

@@ -55,7 +55,7 @@ val databaseModule = module {
     }
 
     // MongoDb
-    factory<CoroutineDatabase> {
+    single<CoroutineDatabase> {
         val configString = System.getenv("MONGODB_URI")
         KMongo.createClient(configString)
             .coroutine

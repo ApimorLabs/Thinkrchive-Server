@@ -7,5 +7,6 @@ import kotlinx.serialization.Serializable
 data class Admin(
     val email: String,
     val username: String,
-    val hashPassword: String
+    val hashPassword: String,
+    val salt: String
 ): Principal
