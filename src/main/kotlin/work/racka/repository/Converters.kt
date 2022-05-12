@@ -11,6 +11,7 @@ import work.racka.data.table.LaptopTable
 object Converters {
     fun rowToAdmin(row: ResultRow): Admin {
         return Admin(
+            _id = row[AdminTable.email],
             email = row[AdminTable.email],
             username = row[AdminTable.username],
             hashPassword = row[AdminTable.hashPassword],

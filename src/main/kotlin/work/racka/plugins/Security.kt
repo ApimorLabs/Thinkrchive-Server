@@ -53,7 +53,7 @@ fun Application.configureSecurity() {
             try {
                 val saltedHash = hashService.generateSaltedHash(password!!)
                 val admin = Admin(
-                    email = email!!,
+                    _id = email!!,
                     username = username!!,
                     hashPassword = saltedHash.hash,
                     salt = saltedHash.salt

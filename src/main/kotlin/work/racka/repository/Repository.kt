@@ -9,7 +9,7 @@ interface Repository {
     // TODO: Add a method to get all current admins
 
     // Add admin
-    suspend fun addAdmin(admin: Admin)
+    suspend fun addAdmin(admin: Admin): Boolean
 
     // Search admin for login
     suspend fun findAdmin(email: String): Admin?

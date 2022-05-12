@@ -11,7 +11,7 @@ import work.racka.data.table.LaptopTable
 class RepositoryImpl(
     private val db: LaptopDatabase
 ) : Repository {
-    override suspend fun addAdmin(admin: Admin) {
+    override suspend fun addAdmin(admin: Admin): Boolean {
         db.query {
             AdminTable.insert { adminTable ->
                 adminTable[email] = admin.email
@@ -19,6 +19,7 @@ class RepositoryImpl(
                 adminTable[hashPassword] = admin.hashPassword
             }
         }
+        return true
     }
 
     override suspend fun deleteAdmin(email: String) {

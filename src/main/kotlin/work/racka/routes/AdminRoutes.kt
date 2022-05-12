@@ -48,21 +48,28 @@ class AdminRoutes(
                 if (registerRequest.regKey == adminRegKey) {
                     val saltedHash = hashService.generateSaltedHash(registerRequest.password)
                     val admin = Admin(
-                        email = registerRequest.email,
+                        _id = registerRequest.email,
                         username = registerRequest.username,
                         hashPassword = saltedHash.hash,
                         salt = saltedHash.salt
                     )
-                    dbRepo.addAdmin(admin)
-                    val config = AdminConfig.tokenConfig(appEnvironment!!)
-                    val emailClaim = TokenClaim(
-                        name = TokenClaimNames.EMAIL,
-                        value = admin.email
-                    )
-                    call.respond(
-                        HttpStatusCode.OK,
-                        Response(true, tokenService.generate(config, emailClaim))
-                    )
+                    val addSuccess = dbRepo.addAdmin(admin)
+                    if (addSuccess) {
+                        val config = AdminConfig.tokenConfig(appEnvironment!!)
+                        val emailClaim = TokenClaim(
+                            name = TokenClaimNames.EMAIL,
+                            value = admin.email
+                        )
+                        call.respond(
+                            HttpStatusCode.OK,
+                            Response(true, tokenService.generate(config, emailClaim))
+                        )
+                    } else {
+                        call.respond(
+                            HttpStatusCode.InternalServerError,
+                            Response(false, Constants.ERROR_GENERIC)
+                        )
+                    }
                 } else {
                     call.respond(
                         HttpStatusCode.BadRequest,
@@ -114,7 +121,13 @@ class AdminRoutes(
                     } else {
                         call.respond(
                             HttpStatusCode.BadRequest,
-                            Response(false, Constants.ERROR_BAD_PASSWORD)
+                            Response(
+                                false,
+                                Constants.ERROR_BAD_PASSWORD + hashService.verify(
+                                    password = loginRequest.password,
+                                    saltedHash
+                                )
+                            )
                         )
                     }
                 }
@@ -129,6 +142,8 @@ class AdminRoutes(
         // Delete Admin
         authenticate("jwt") {
             delete<AdminDeleteRoute> {
+                val principal = call.principal<Admin>()
+                val principalEmail = principal?.email
                 val deleteRequest = try {
                     call.receive<LoginRequest>()
                 } catch (e: Exception) {
@@ -151,11 +166,18 @@ class AdminRoutes(
                             hash = admin.hashPassword,
                             salt = admin.salt
                         )
-                        if (hashService.verify(deleteRequest.password, saltedHash)) {
+                        if (hashService.verify(deleteRequest.password, saltedHash)
+                            && admin.email == principalEmail
+                        ) {
                             dbRepo.deleteAdmin(admin.email)
                             call.respond(
                                 HttpStatusCode.OK,
                                 Response(true, Constants.SUCCESS_ADMIN_DELETED)
+                            )
+                        } else if (admin.email != principalEmail) {
+                            call.respond(
+                                HttpStatusCode.Forbidden,
+                                Response(false, Constants.ERROR_WRONG_ACCOUNT)
                             )
                         } else {
                             call.respond(

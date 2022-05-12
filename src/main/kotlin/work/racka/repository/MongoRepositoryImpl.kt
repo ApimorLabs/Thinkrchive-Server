@@ -1,6 +1,5 @@
 package work.racka.repository
 
-import org.litote.kmongo.eq
 import work.racka.data.database.MongoDB
 import work.racka.data.model.Admin
 import work.racka.data.model.Laptop
@@ -13,15 +12,15 @@ class MongoRepositoryImpl(
     private val db: MongoDB
 ) : Repository {
 
-    override suspend fun addAdmin(admin: Admin) {
-        db.collection<Admin>().insertOne(admin)
+    override suspend fun addAdmin(admin: Admin): Boolean {
+        return db.collection<Admin>().insertOne(admin).wasAcknowledged()
     }
 
     override suspend fun findAdmin(email: String): Admin? =
-        db.collection<Admin>().findOne(Admin::email eq email)
+        db.collection<Admin>().findOneById(email)
 
     override suspend fun deleteAdmin(email: String) {
-        db.collection<Admin>().deleteOne(Admin::email eq email)
+        db.collection<Admin>().deleteOneById(email)
     }
 
     override suspend fun getAllLaptops(): List<LaptopResponse> =

@@ -19,7 +19,7 @@ class SHA256HashingService : HashingService {
     }
 
     override fun verify(password: String, saltedHash: SaltedHash): Boolean {
-        return hash(saltedHash.hash + password) == saltedHash.hash
+        return hash(saltedHash.salt + password) == saltedHash.hash
     }
 
     private fun hash(value: String): String {
