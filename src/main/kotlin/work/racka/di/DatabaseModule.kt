@@ -11,6 +11,7 @@ import work.racka.data.database.LaptopDatabase
 import work.racka.data.database.MongoDB
 import work.racka.repository.MongoRepositoryImpl
 import work.racka.repository.Repository
+import work.racka.util.Constants
 import java.net.URI
 
 val databaseModule = module {
@@ -58,7 +59,7 @@ val databaseModule = module {
         val configString = System.getenv("MONGODB_URI")
         KMongo.createClient(configString)
             .coroutine
-            .getDatabase("thinkpad_db")
+            .getDatabase(Constants.DATABASE_NAME)
     }
 
     factory<MongoDB> {

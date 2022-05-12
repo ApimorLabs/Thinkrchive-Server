@@ -1,3 +1,4 @@
+/*
 package work.racka.di
 
 import io.ktor.events.EventDefinition
@@ -13,10 +14,12 @@ import org.koin.core.parameter.ParametersDefinition
 import org.koin.core.qualifier.Qualifier
 import org.koin.dsl.KoinAppDeclaration
 
+*/
 /**
  * This a workaround to get Koin working on Ktor 2.0.0 and will be removed when
  * the official fix is merged to a future Koin version.
- */
+ *//*
+
 
 inline fun <reified T : Any> ApplicationCall.inject(
     qualifier: Qualifier? = null, noinline parameters: ParametersDefinition? = null
@@ -106,4 +109,4 @@ val Koin = createApplicationPlugin(name = "Koin", createConfiguration = ::KoinCo
             monitor.raise(KoinApplicationStopped, koinApplication)
         }
     }
-}
+}*/

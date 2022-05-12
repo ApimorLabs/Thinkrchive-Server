@@ -4,7 +4,7 @@ import io.ktor.server.application.*
 import io.ktor.server.locations.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import work.racka.di.inject
+import org.koin.ktor.ext.inject
 import work.racka.routes.Routes
 
 @OptIn(KtorExperimentalLocationsAPI::class)

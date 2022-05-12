@@ -6,10 +6,10 @@ import io.ktor.server.auth.*
 import io.ktor.server.auth.jwt.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import org.koin.ktor.ext.inject
 import work.racka.authentication.Auth
 import work.racka.authentication.JwtService
 import work.racka.data.model.Admin
-import work.racka.di.inject
 import work.racka.repository.Repository
 
 fun Application.configureSecurity() {

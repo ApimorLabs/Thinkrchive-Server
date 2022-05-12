@@ -1,6 +1,9 @@
 package work.racka.util
 
 object Constants {
+    // DataBase
+    const val DATABASE_NAME = "thinkpad_db"
+
     // Errors
     const val ERROR_MISSING_FIELDS = "Missing Some Fields"
     const val ERROR_GENERIC = "Some Problem Occurred"
