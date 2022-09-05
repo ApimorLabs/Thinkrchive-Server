@@ -1,1 +1,1 @@
-web: chmod -R 775 build/install/work.racka.thinkrchive-server/bin/work.racka.thinkrchive-server
+web: chmod -R 775 build/install/Thinkrchive-server/bin/Thinkrchive-server
