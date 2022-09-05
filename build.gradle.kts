@@ -18,6 +18,7 @@ plugins {
 
 group = "work.racka"
 version = "1.0.0"
+
 application {
     mainClass.set("io.ktor.server.netty.EngineMain")
 }
@@ -27,6 +28,14 @@ with(tasks) {
     }
     withType<KotlinCompile> {
         kotlinOptions.freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
+    }
+}
+
+ktor {
+    docker {
+        jreVersion.set(io.ktor.plugin.features.JreVersion.JRE_11)
+        localImageName.set("thinkrchive-server-image")
+        imageTag.set(version.toString())
     }
 }
 
