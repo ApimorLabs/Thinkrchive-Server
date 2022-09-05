@@ -1,1 +1,1 @@
-rootProject.name = "work.racka.thinkrchive-server"
+rootProject.name = "Thinkrchive-server"
