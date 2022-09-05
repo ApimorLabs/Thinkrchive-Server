@@ -1,1 +1,1 @@
-web: chmod -R 775 build/install/Thinkrchive-server/bin/Thinkrchive-server
+web: chmod -R 775 ./build/install/Thinkrchive-server/bin/Thinkrchive-server
